@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tik tak </title>
+    <link rel="stylesheet" href="main.css">
+    <script src="main.js"></script>
+</head>
+<body>
+    <div class="top">
+        <br>
+        <h1  class="head">Rock-Paper-Scissors </h1>
+        <br>
+        <br>
+        <div class="sec">
+            <br>
+            <button class="button" id="rock"><IMg src="rock.png" ></IMg></button>
+            <button class="button" id="paper"><img src="paper.png"></button>
+            <button class="button" id="scissors"><img src="scissors.png"> </button>
+            <br>
+            <div class="result">
+                
+                
+
+            </div>
+            <div style="text-align: center;">
+                <button type="button" onclick="window.location.reload()" class="rel">reload</button>
+            </div>
+
+            
+
+        </div>
+
+
+
+    </div>
+    <script>
+     
+
+
+
+
+        // Generate a random choice for the computer.
+        function getComputerChoice() {
+          const choices = ['rock', 'paper', 'scissors'];
+          const randomIndex = Math.floor(Math.random() * choices.length);
+          return choices[randomIndex];
+        }
+    
+        // Determine who won the game.
+        function getWinner(playerChoice, computerChoice) {
+          if (playerChoice === computerChoice) {
+            return 'tie';
+          } else if (playerChoice === 'rock' && computerChoice === 'scissors') {
+            return 'player';
+          } else if (playerChoice === 'paper' && computerChoice === 'rock') {
+            return 'player';
+          } else if (playerChoice === 'scissors' && computerChoice === 'paper') {
+            return 'player';
+          } else {
+            return 'computer';
+          }
+        }
+    
+        // Display the result of the game.
+        function displayResult(winner) {
+          const resultElement = document.querySelector('.result');
+          if (winner === 'player') {
+            resultElement.textContent = 'You won!';
+          } else if (winner === 'computer') {
+            resultElement.textContent = 'The computer won.';
+          } else {
+            resultElement.textContent = 'Tie game.';
+          }
+        }
+    
+        // Handle the player's choice.
+        document.addEventListener('click', event => {
+          const target = event.target;
+          if (target.classList.contains('button')) {
+            // The player has clicked on a button.
+            const playerChoice = target.id;
+    
+            // Get the computer's choice.
+            const computerChoice = getComputerChoice();
+    
+            // Determine who won the game.
+            const winner = getWinner(playerChoice, computerChoice);
+    
+            // Display the result of the game.
+            displayResult(winner);
+          }
+        });
+    </script>
+
+    
+</body>
+</html>
